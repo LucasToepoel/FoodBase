@@ -20,3 +20,5 @@ plans are to implement:
 - MealPlan scheduling/Mealprep
 - Dashboard with Health Information
 - Being Able to compose meals with products in the DB
+![Screenshot 2024-09-11 120326](https://github.com/user-attachments/assets/3fe5173a-9d60-4043-87b3-a1d18cfc0d8d)
+![Screenshot 2024-09-11 120311](https://github.com/user-attachments/assets/5d35268e-5f04-4355-a4dd-bbc050f5acff)
