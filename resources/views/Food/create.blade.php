@@ -13,7 +13,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="ean">EAN:</label>
-                            <input type="text" class="form-control" id="ean" name="ean" value="{{ session('ean') }}" readonly onclick="document.getElementById('barcode').click();">
+                            <input type="text" class="form-control" id="ean" name="ean" value="{{ session('ean') }}" placeholder="click me, upload image of EAN code" readonly onclick="document.getElementById('barcode').click();">
                         </div>
                         <div class="form-group">
                             <label for="name">Name:</label>
