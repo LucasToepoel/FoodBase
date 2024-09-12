@@ -14,7 +14,7 @@ you can run this project yourself by cloning the project, currently the ENV vari
 - use commands:
 ```
 composer install
-php artisan generate:key
+php artisan key:generate
 npm install
 php artisan migrate
 php artisan db:seed (optional)
