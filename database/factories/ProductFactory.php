@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class FoodEntryFactory extends Factory
+class ProductFactory extends Factory
 {
 
     /**
@@ -21,13 +21,13 @@ class FoodEntryFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'calories' => $this->faker->numberBetween(50, 1000),
-            'protein' => $this->faker->numberBetween(1, 100),
-            'carbs' => $this->faker->numberBetween(1, 100),
-            'fat' => $this->faker->numberBetween(1, 100),
             'ean' => $this->faker->ean13(),
+            'nutrition_id' => $this->faker->numberBetween(1, 10),
+            'portion_product_id' => $this->faker->numberBetween(1, 10),
+            'product_tag_id' => $this->faker->numberBetween(1, 10),
             'created_at' => now(),
             'updated_at' => now(),
+
         ];
     }
 

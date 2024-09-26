@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FoodEntry extends Model
+class Nutrition extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'name',
-        'calories',
+        'kcal',
         'fat',
         'carbs',
         'protein',
-        'ean',
     ];
 
-
+public function product()
+{
+    return $this->belongsTo(Product::class);
+}
 }

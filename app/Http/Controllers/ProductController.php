@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FoodEntry;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Zxing\QrReader;
-use PHPZxing\PHPZxingDecoder;
-class FoodBaseController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,8 @@ class FoodBaseController extends Controller
     public function index()
     {
         return view('food.index', [
-            'foodEntries' => FoodEntry::all(),'h1' => 'All Food Entries'
+            'h1' => 'Food Base',
+            'products' => Product::all()
         ]);
     }
 
@@ -45,14 +44,14 @@ class FoodBaseController extends Controller
         ]);
 
         // Create a new food entry
-        $foodEntry = new FoodEntry();
-        $foodEntry->name = $request->input('name');
-        $foodEntry->calories = $request->input('calories');
-        $foodEntry->protein = $request->input('protein');
-        $foodEntry->carbs = $request->input('carbs');
-        $foodEntry->fat = $request->input('fat');
-        $foodEntry->ean = $request->input('ean'); // Add the ean field
-        $foodEntry->save();
+        $Product = new Product();
+        $Product->name = $request->input('name');
+        $Product->calories = $request->input('calories');
+        $Product->protein = $request->input('protein');
+        $Product->carbs = $request->input('carbs');
+        $Product->fat = $request->input('fat');
+        $Product->ean = $request->input('ean'); // Add the ean field
+        $Product->save();
 
         // Redirect or return a response
         return redirect()->route('FoodBase.index')->with('success', 'Food entry created successfully.');
@@ -61,7 +60,7 @@ class FoodBaseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(FoodEntry $foodEntry)
+    public function show(Product $Product)
     {
         return view('food.show', [
             'h1' => 'Food Entry'
@@ -71,7 +70,7 @@ class FoodBaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(FoodEntry $foodEntry)
+    public function edit(Product $product)
     {
         return view('food.edit', [
             'h1' => 'Food edit Form'
@@ -81,7 +80,7 @@ class FoodBaseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, FoodEntry $foodEntry)
+    public function update(Request $request, Product $Product)
     {
         //
     }
@@ -89,7 +88,7 @@ class FoodBaseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FoodEntry $foodEntry)
+    public function destroy(Product $Product)
     {
         //
     }

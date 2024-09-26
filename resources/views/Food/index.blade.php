@@ -1,6 +1,8 @@
 
     @extends('layouts.app')
 
+
+@section('content')
     <div class="container">
         <h1>{{$h1}}</h1>
 
@@ -16,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($foodEntries as $food)
+                @foreach($products as $food)
                     <tr>
                         <td>{{ $food->name }}</td>
                         <td>{{ $food->calories }}</td>
@@ -33,3 +35,5 @@
         </table>
     </div>
 
+
+@endsection
