@@ -19,13 +19,20 @@
             </thead>
             <tbody>
                 @foreach($products as $food)
+
                     <tr>
                         <td>{{ $food->name }}</td>
-                        <td>{{ $food->calories }}</td>
-                    <td>{{ $food->protein }}</td>
-                    <td>{{ $food->carbs }}</td>
-                    <td>{{ $food->fat }}</td>
-                    <td>{{ $food->ean }}</td>
+                        @if ($food->nutrition)
+                        <td>{{ $food->nutrition->kcal }}</td>
+                        <td>{{ $food->nutrition->protein }}</td>
+                        <td>{{ $food->nutrition->carbs }}</td>
+                        <td>{{ $food->nutrition->fat }}</td>
+                    @else
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        @endif
                     <td>
                         <img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($food->ean, 'EAN13') }}" alt="barcode" />
                     </td>
