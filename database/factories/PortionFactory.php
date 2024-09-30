@@ -16,10 +16,12 @@ class PortionFactory extends Factory
      */
     public function definition(): array
     {
-        return [
 
-            'unit' => $this->faker->word,
-            'value' => $this->faker->randomFloat(2, 0, 100)
-        ];
+
+            return [
+                'unit' => $this->faker->lexify('??'),
+                'value' => $this->faker->randomFloat(2, 0.1, 100),
+                ];
+
     }
 }

@@ -24,12 +24,12 @@ public function nutrition()
 }
 public function portions()
 {
-    return $this->hasMany(Portion::class);
+    return $this->belongsToMany(Portion::class);
 
 }
 public function tags()
 {
-    return $this->hasMany(Tag::class);
+    return $this->belongsToMany(Tag::class);
 }
 }
 

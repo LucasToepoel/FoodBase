@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('ean');
-            $table->foreignId('nutrition_id')->constrained();
-            $table->foreignId('portion_product_id')->constrained();
-            $table->foreignId('product_tag_id')->constrained();
+            $table->foreignId('nutrition_id')->nullable();
+            $table->foreignId('portion_product_id')->nullable();
+            $table->foreignId('product_tag_id')->nullable();
             $table->timestamps();
         });
     }

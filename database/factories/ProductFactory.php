@@ -22,9 +22,9 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->word,
             'ean' => $this->faker->ean13(),
-            'nutrition_id' => $this->faker->numberBetween(1, 10),
-            'portion_product_id' => $this->faker->numberBetween(1, 10),
-            'product_tag_id' => $this->faker->numberBetween(1, 10),
+            'nutrition_id' => $this->faker->unique()->numberBetween(1, 50),
+            'portion_product_id' => null,
+            'product_tag_id' => null,
             'created_at' => now(),
             'updated_at' => now(),
 

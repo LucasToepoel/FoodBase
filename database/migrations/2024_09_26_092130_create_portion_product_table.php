@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('portion_product', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->foreignId('portion_reference_id')->constrained(); // Reference either portions or custom_portions
+            $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('cascade');
+            $table->unsignedBigInteger('portion_id');
             $table->enum('portion_type', ['standard', 'custom']);
             $table->timestamps();
         });
