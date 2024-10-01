@@ -19,7 +19,7 @@ class Product extends Model
 
 public function nutrition()
 {
-    return $this->hasOne(Nutrition::class);
+    return $this->belongsTo(Nutrition::class);
 
 }
 public function portions()

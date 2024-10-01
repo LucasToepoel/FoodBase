@@ -15,6 +15,8 @@
                     <th>Carbs</th>
                     <th>Fat</th>
                     <th>EAN</th>
+                    <th>Tags</th>
+                    <th>portions</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +38,11 @@
                     <td>
                         <img src="data:image/png;base64,{{ DNS1D::getBarcodePNG($food->ean, 'EAN13') }}" alt="barcode" />
                     </td>
+                    <td>
+                        @foreach ($food->tags as $tag)
+                            <span class="badge" style="background-color: {{ $tag->color }}; color: white">{{ $tag->name }}</span>     @endforeach
+                    </td>
+
                     </tr>
                 @endforeach
             </tbody>
