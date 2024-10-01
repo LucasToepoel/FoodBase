@@ -18,27 +18,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create Users
         User::factory(10)->create();
-
-        // Create Products
-        $products = Product::factory(50)->create();
-
-        // Create Nutrition records
-        Nutrition::factory(50)->create();
-
-        // Create Tags
         $tags = Tag::factory(5)->create();
-
-        // Create Portions
+        $products = Product::factory(50)->create();
+        Nutrition::factory(50)->create();
         Portion::factory(20)->create();
+        Portion::factory(20)->custom()->create();
 
-        // Create Custom Portions
-        CustomPortion::factory(10)->create();
-
+        
         // Attach Tags to Products
         $products->each(function ($product) use ($tags) {
-        // Randomly attach 1 to 3 tags to each product
             $randomTags = $tags->random(rand(1, 3))->pluck('id');
             $product->tags()->attach($randomTags);
         });

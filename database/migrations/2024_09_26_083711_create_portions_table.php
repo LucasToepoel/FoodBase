@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('portion_product', function (Blueprint $table) {
+        Schema::create('portions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('cascade');
-            $table->unsignedBigInteger('portion_id');
+            $table->string('unit');
+            $table->float('value');
             $table->enum('portion_type', ['standard', 'custom']);
             $table->timestamps();
         });
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('portion_product');
+        Schema::dropIfExists('portions');
     }
 };

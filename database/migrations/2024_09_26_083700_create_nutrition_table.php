@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('nutrition', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->float('kcal');
             $table->float('protein');
             $table->float('fat');

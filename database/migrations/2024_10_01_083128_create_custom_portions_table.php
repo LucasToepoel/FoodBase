@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('portions', function (Blueprint $table) {
+        Schema::create('custom_portions', function (Blueprint $table) {
             $table->id();
-            $table->string('unit');
-            $table->float('value');
+            $table->foreignId('portion_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('portions');
+        Schema::dropIfExists('custom_portions');
     }
 };
