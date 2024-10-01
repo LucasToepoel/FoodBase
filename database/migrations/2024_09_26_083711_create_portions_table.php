@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('portions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('cascade');
             $table->string('unit');
             $table->float('value');
             $table->enum('portion_type', ['standard', 'custom']);

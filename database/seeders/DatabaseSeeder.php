@@ -20,12 +20,11 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
         $tags = Tag::factory(5)->create();
-        $products = Product::factory(50)->create();
-        Nutrition::factory(50)->create();
+        $products = Product::factory(50)->food()->create();
         Portion::factory(20)->create();
         Portion::factory(20)->custom()->create();
 
-        
+
         // Attach Tags to Products
         $products->each(function ($product) use ($tags) {
             $randomTags = $tags->random(rand(1, 3))->pluck('id');

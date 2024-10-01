@@ -19,14 +19,11 @@ class NutritionFactory extends Factory
      */
     public function definition(): array
     {
-        static $productId = 1;
-
         return [
             'kcal' => $this->faker->numberBetween(50, 800),
             'fat' => $this->faker->numberBetween(1, 100),
             'carbs' => $this->faker->numberBetween(1, 300),
             'protein' => $this->faker->numberBetween(1, 200),
-            'product_id' => $productId++,
         ];
     }
 }

@@ -3,8 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+use App\Models\Nutrition;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -22,15 +21,20 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->word,
             'ean' => $this->faker->ean13(),
-            'nutrition_id' => $this->faker->unique()->numberBetween(1, 50),
+            'nutrition_id' => null,
             'created_at' => now(),
             'updated_at' => now(),
 
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
+    public function food()
+    {
+        return $this->afterCreating(function ($product) {
+            $nutrition = Nutrition::factory()->create();
+            $product->nutrition_id = $nutrition->id;
+            $product->save();
+        });
+    }
 
 }
