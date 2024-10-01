@@ -22,7 +22,7 @@ class TagFactory extends Factory
             'description' => $this->faker->sentence(6),
             'color' => $this->faker->hexColor,
             'type' => $this->faker->randomElement(['allergy', 'diet', 'lifestyle']),
-            'icon' => base64_encode($this->faker->image(null, 640, 480, null, true))
+            'icon' => 'fas fa-utensils',
 
         ];
     }

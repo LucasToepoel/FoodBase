@@ -46,11 +46,11 @@ class ProductController extends Controller
         // Create a new food entry
         $Product = new Product();
         $Product->name = $request->input('name');
-        $Product->calories = $request->input('calories');
-        $Product->protein = $request->input('protein');
-        $Product->carbs = $request->input('carbs');
-        $Product->fat = $request->input('fat');
-        $Product->ean = $request->input('ean'); // Add the ean field
+        $Product->nutrition->calories = $request->input('calories');
+        $Product->nutrition->protein = $request->input('protein');
+        $Product->nutrition->carbs = $request->input('carbs');
+        $Product->nutrition->fat = $request->input('fat');
+        $Product->nutrition->ean = $request->input('ean'); // Add the ean field
         $Product->save();
 
         // Redirect or return a response

@@ -9,7 +9,7 @@
                     <h1>Create Food</h1>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('FoodBase.store') }}" method="POST">
+                    <form action="{{ route('Product.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="ean">EAN:</label>
@@ -41,7 +41,7 @@
                             <button type="submit" class="btn btn-primary">Create</button>
                         </div>
                     </form>
-                    <form action="{{ route('FoodBase.uploadBarcode') }}" method="POST" enctype="multipart/form-data" id="barcodeForm" style="display: none;">
+                    <form action="{{ route('Product.uploadBarcode') }}" method="POST" enctype="multipart/form-data" id="barcodeForm" style="display: none;">
                         @csrf
                         <input type="file" class="form-control-file" id="barcode" name="barcode" onchange="   document.getElementById('barcodeForm').submit()">
                     </form>
