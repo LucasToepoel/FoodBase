@@ -23,9 +23,8 @@ php artisan serve
 ```
 
 urls when using php artisan serve:
-- http://127.0.0.1:8000/ (laravel welcomepage)
-- http://127.0.0.1:8000/FoodBase/ (my application)
-- http://127.0.0.1:8000/FoodBase/create
+- http://127.0.0.1:8000/Product
+- http://127.0.0.1:8000/Product/create
 
 plans are to implement:
 - UserInterface
