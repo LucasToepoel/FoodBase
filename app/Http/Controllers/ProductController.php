@@ -12,9 +12,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('food.index', [
-            'h1' => 'Food Base',
-            'products' => Product::all()
+        $products = Product::all();
+        return view('Food.index', [
+
+            'products' => $products
         ]);
     }
 

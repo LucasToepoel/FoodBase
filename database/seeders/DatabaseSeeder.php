@@ -7,7 +7,6 @@ use App\Models\Portion;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Tag;
-use App\Models\CustomPortion;
 use Illuminate\Support\Facades\Log;
 
 use Illuminate\Database\Seeder;
