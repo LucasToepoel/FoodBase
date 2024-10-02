@@ -12,13 +12,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('Food.index', [
+        $products = Product::all(); // Replace with your data fetching logic
 
-            'products' => $products
-        ]);
+        return view('food.index', compact('products')); // Pass data to the view
     }
-
     /**
      * Show the form for creating a new resource.
      */
