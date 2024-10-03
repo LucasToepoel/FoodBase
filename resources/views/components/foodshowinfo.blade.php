@@ -10,5 +10,6 @@
         <p class="card-text"><strong>Fat:</strong> {{ $product->nutrition->fat }}g</p>
         <p class="card-text">{{ $product->description }}</p>
     </div>
+    <a href="{{ url()->previous() }}" class="btn btn-primary">Go Back</a>
 </div>
 </div>

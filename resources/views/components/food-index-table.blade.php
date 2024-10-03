@@ -45,7 +45,7 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            <a href="{{ route('Product.show', ['Product' => $food->id]) }}" class="btn btn-primary">View</a>
+                                            <a href="{{ route('Product.show', ['Product' => $food->id]) }}" class="btn btn-info">View</a>
                                             @auth
                                                 <a href="{{ route('Product.edit', ['Product' => $food->id]) }}" class="btn btn-warning">Edit</a>
 
