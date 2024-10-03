@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Nutrition;
+use Illuminate\Contracts\Cache\Store;
+
 class ProductController extends Controller
 {
     /**
@@ -21,9 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('food.create', [
-            'h1' => 'Food Entry Form'
-        ]);
+        return view('food.create');
     }
 
     /**
@@ -41,18 +42,29 @@ class ProductController extends Controller
             'ean' => 'required|string|max:255', // Add validation for the ean field
         ]);
 
-        // Create a new food entry
-        $Product = new Product();
-        $Product->name = $request->input('name');
-        $Product->nutrition->calories = $request->input('calories');
-        $Product->nutrition->protein = $request->input('protein');
-        $Product->nutrition->carbs = $request->input('carbs');
-        $Product->nutrition->fat = $request->input('fat');
-        $Product->nutrition->ean = $request->input('ean'); // Add the ean field
-        $Product->save();
+   // Create a new food entry
+$Product = new Product();
+$Product->name = $request->input('name');
 
-        // Redirect or return a response
-        return redirect()->route('FoodBase.index')->with('success', 'Food entry created successfully.');
+// Create a new Nutrition object and assign it to the Product's nutrition property
+$nutrition = new Nutrition();
+$nutrition->kcal = $request->input('calories');
+$nutrition->protein = $request->input('protein');
+$nutrition->carbs = $request->input('carbs');
+$nutrition->fat = $request->input('fat');
+$nutrition->created_at = now();
+$nutrition->updated_at = now();
+
+// Save the Nutrition object first
+$nutrition->save();
+
+// Assign the nutrition object's id to the Product's nutrition_id property
+$Product->nutrition_id = $nutrition->id;
+$Product->ean = $request->input('ean');
+
+// Save the Product
+$Product->save();
+        return redirect()->route('Product.index')->with('success', 'Food entry created successfully.');
     }
 
     /**
@@ -60,19 +72,20 @@ class ProductController extends Controller
      */
     public function show(Product $Product)
     {
-        return view('food.show', [
-            'h1' => 'Food Entry'
-        ]);
+        $product = Product::find($Product->id);
+
+        return view('food.show', compact('product')); // Pass data to the view
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Product $Product)
     {
-        return view('food.edit', [
-            'h1' => 'Food edit Form'
-        ]);
+        // No need to find the product again
+         $Product = Product::find($Product->id);
+
+        return view('food.edit', compact('Product'));
     }
 
     /**
@@ -80,7 +93,30 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $Product)
     {
-        //
+            // Validate the request
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'calories' => 'required|integer',
+                'protein' => 'required|integer',
+                'carbs' => 'required|integer',
+                'fat' => 'required|integer',
+                'ean' => 'required|string|max:255', // Add validation for the ean field
+            ]);
+
+            // Create a new food entry
+            $Product = Product::find($Product->id);
+            $nutrition = Nutrition::find($Product->nutrition_id);
+            $Product->name = $request->input('name');
+            $nutrition->kcal = $request->input('calories');
+            $nutrition->protein = $request->input('protein');
+            $nutrition->carbs = $request->input('carbs');
+            $nutrition->fat = $request->input('fat');
+            $nutrition->updated_at = now();
+            $Product->save();
+            $nutrition->save();
+            // Redirect or return a response
+
+            return redirect()->route('Product.index')->with('success', 'Food entry created successfully.');
     }
 
     /**
@@ -88,7 +124,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $Product)
     {
-        //
+        $Product->delete();
+        return redirect()->route('Product.index')->with('success', 'Food entry deleted successfully.');
+
     }
 
 
@@ -98,13 +136,11 @@ public function upload(Request $request)
         'barcode' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
     ]);
 
-    $path = $request->file('barcode')->store('public/barcodes');
+    $path = $request->file('barcode')->store();
 
-
-    $result = shell_exec(base_path('\ZBar\bin\zbarimg.exe') . ' -q --raw ' . storage_path('app/' . $path));
+    $result = shell_exec(base_path('\ZBar\bin\zbarimg.exe') . ' -q --raw ' . storage_path('app\\private\\' . $path));
 
     $data = explode("\n", $result)[0];
-
     Storage::delete($path);
   return redirect()->back()->with('ean', $data);
 

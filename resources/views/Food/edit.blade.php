@@ -5,6 +5,6 @@
         </h2>
     </x-slot>
 
-    <x-createfoodform></x-createfoodform>
+    <x-createfoodform :Product="$Product"></x-createfoodform>
 
 </x-app-layout>
