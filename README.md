@@ -20,6 +20,7 @@ You can run this project yourself by cloning the project.
     composer install
     php artisan key:generate
     npm install
+    npm run build
     php artisan migrate
     php artisan db:seed (optional)
     npm run dev
