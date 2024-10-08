@@ -7,59 +7,27 @@ use Illuminate\Http\Request;
 
 class PortionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
+        $portion = new Portion();
+        $portion->unit = $request->input('unit');
+        $portion->value = $request->input('value');
+        $portion->created_at = now();
+        $portion->updated_at = now();
+        $portion->save();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Portion $portion)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Portion $portion)
-    {
-        //
+        return $portion;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Portion $portion)
+    public function update(Request $request, $id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Portion $portion)
-    {
-        //
+        $portion = Portion::find($id);
+        $portion->unit = $request->input('unit');
+        $portion->value = $request->input('value');
+        $portion->updated_at = now();
+        $portion->save();
     }
 }

@@ -34,7 +34,6 @@
 
 
 
-
             <!-- Page Heading -->
             <header class="bg-white dark:bg-gray-800 shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -44,6 +43,17 @@
                 </div>
             </header>
 
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
             <!-- Page Content -->
             <main class="p-4">
                 @isset($slot)
