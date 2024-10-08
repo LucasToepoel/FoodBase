@@ -1,15 +1,15 @@
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="form-group text-left">
-                            <a href="{{ route('Product.create') }}" class="btn btn-success">ADD</a>
-                        </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="form-group text-left">
+                        <a href="{{ route('Product.create') }}" class="btn btn-success">ADD</a>
                     </div>
+                </div>
 
-                    <div class="card-body">
+                <div class="card-body">
+                    <div class="table-responsive">
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
@@ -23,11 +23,9 @@
                                     <th>Tags</th>
                                     <th>Actions</th>
                                 </tr>
-
                             </thead>
 
                             <tbody>
-
                                 @foreach($products as $food)
                                     <tr>
                                         <th scope="row">{{ $food->id }}</th>
@@ -55,7 +53,8 @@
                                                     <button type="submit" class="btn btn-danger">Delete</button>
                                                 </form>
                                             @endauth
-                                        </td>     </tr>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -64,4 +63,4 @@
             </div>
         </div>
     </div>
-
+</div>
