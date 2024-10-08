@@ -13,9 +13,19 @@
                 <!-- Navigation Links -->
                 @auth
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('Day.index')" :active="request()->routeIs('Day.index')" >
+                        {{ __('Planner') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('Product.index')" :active="request()->routeIs('Product.index')" >
+                        {{ __('DataBase') }}
+                    </x-nav-link>
+
                 </div>
                 @endauth
 
@@ -79,6 +89,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
         </div>
 
         <!-- Responsive Settings Options -->
