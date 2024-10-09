@@ -6,6 +6,6 @@
 
     </x-slot>
 
-
+<x-table-calendar-full></x-table-calendar-full>
 
 </x-app-layout>
