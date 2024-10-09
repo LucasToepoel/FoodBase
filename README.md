@@ -40,5 +40,12 @@ You can run this project yourself by cloning the project.
 - Dashboard with Health Information
 - Being able to compose meals with products in the DB
 
+Progress 00:
 ![Screenshot 2024-09-11 120326](https://github.com/user-attachments/assets/3fe5173a-9d60-4043-87b3-a1d18cfc0d8d)
 ![Screenshot 2024-09-11 120311](https://github.com/user-attachments/assets/5d35268e-5f04-4355-a4dd-bbc050f5acff)
+Progress 01:
+
+![Screenshot 2024-10-09 122656](https://github.com/user-attachments/assets/ebc16604-0552-4536-a16b-fe78b4d9d660)
+![Screenshot 2024-10-09 122511](https://github.com/user-attachments/assets/db1d48e7-77dd-4947-a5d7-430f878e7472)
+![Screenshot 2024-10-09 122552](https://github.com/user-attachments/assets/9a37e12e-8945-49d4-9042-81af78776105)
+![Screenshot 2024-10-09 122612](https://github.com/user-attachments/assets/57f1d7ad-9338-4e92-8696-be7e431cfffd)
