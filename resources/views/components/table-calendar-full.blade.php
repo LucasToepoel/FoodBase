@@ -3,7 +3,7 @@
         <div class="card-header text-center">
 
         @php
-            $currentMonth = request()->has('month') ? \Carbon\Carbon::parse(request('month')) : now();
+            $currentMonth = request()->has('date') ? \Carbon\Carbon::parse(request('date')) : now();
             $previousMonth = $currentMonth->copy()->subMonth();
             $nextMonth = $currentMonth->copy()->addMonth();
             $daysInMonth = $currentMonth->daysInMonth;
@@ -62,22 +62,33 @@
 
 <script>
     document.getElementById('previousMonthButton').addEventListener('click', function() {
-        const previousMonth = '{{ $previousMonth->format('Y-m') }}';
-        window.location.href = `?month=${previousMonth}`;
+        const previousMonth = '{{ $previousMonth->format('Y-m-d') }}';
+        window.location.href = `?date=${previousMonth}`;
     });
 
     document.getElementById('nextMonthButton').addEventListener('click', function() {
-        const nextMonth = '{{ $nextMonth->format('Y-m') }}';
-        window.location.href = `?month=${nextMonth}`;
+        const nextMonth = '{{ $nextMonth->format('Y-m-d') }}';
+        window.location.href = `?date=${nextMonth}`;
     });
 
-    document.querySelectorAll('td').forEach(function(td) {
-        td.addEventListener('click', function() {
-            const day = td.innerText;
-            const month = '{{ $currentMonth->format('Y-m') }}';
-            window.location.href = `?day=${day}&month=${month}`;
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('td').forEach(function(td) {
+            td.addEventListener('click', function() {
+                const day = td.innerText;
+                const month = '{{ $currentMonth->format('m') }}';
+                const year = '{{ $currentMonth->format('Y') }}';
+                const date = `${year}-${month}-${day}`;
+
+                // Use Laravel to generate the base URL
+                const baseUrl = "{{ route('Day.create') }}";
+                // Append the date parameter to the base URL
+                const url = `${baseUrl}?date=${date}`;
+
+                window.location.href = url;
+            });
         });
     });
+
 
     document.querySelectorAll('td.text-muted').forEach(function(td) {
         td.addEventListener('click', function() {

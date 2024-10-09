@@ -4,7 +4,10 @@
             <div class="card">
                 <div class="card-header">
                     <div class="form-group text-left">
+                        @auth
+
                         <a href="{{ route('Product.create') }}" class="btn btn-success">ADD</a>
+   @endauth
                     </div>
                 </div>
 

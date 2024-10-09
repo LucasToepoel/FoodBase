@@ -19,9 +19,13 @@ class DayController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $date = $request->query('date');
+
+        // Process the date as needed
+        // For example, you might want to return a view with the date
+        return view('day.create', compact('date'));
     }
 
     /**
