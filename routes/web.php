@@ -18,7 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::resource('Day', DayController::class);
+Route::get('Day', [DayController::class, 'index'])->name('Day.index');
+Route::get('Day/show', [DayController::class, 'show'])->name('Day.show');
 Route::resource('Product', ProductController::class);
 
 Route::post('/decode-barcode', [ProductController::class, 'decode'])->name('decode.barcode');

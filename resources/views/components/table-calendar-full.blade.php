@@ -80,7 +80,7 @@
                 const date = `${year}-${month}-${day}`;
 
                 // Use Laravel to generate the base URL
-                const baseUrl = "{{ route('Day.create') }}";
+                const baseUrl = "{{ route('Day.show') }}";
                 // Append the date parameter to the base URL
                 const url = `${baseUrl}?date=${date}`;
 
