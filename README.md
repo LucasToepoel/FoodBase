@@ -4,6 +4,7 @@ This is a work-in-progress web app:
 - Uses Laravel
 - Uses Composer
 - Uses PHP
+- Uses NPM
 - Currently only works with Windows, due to using Zbar.exe in the command line to process the image.
 
 It currently lets you upload images of EAN13 barcodes and add food product nutrients into a database.
