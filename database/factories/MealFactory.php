@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use app\Models\Product;
+use App\Models\NutritionDayPlan;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Meal>
  */
@@ -20,7 +21,7 @@ class MealFactory extends Factory
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->sentence,
-            'nutrition_day_plans_id' => null,
+
         ];
     }
     public function configure()
