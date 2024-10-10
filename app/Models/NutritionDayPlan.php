@@ -16,11 +16,15 @@ class NutritionDayPlan extends Model
 
     public function meals()
     {
-        return $this->belongsToMany(Meal::class)->withPivot('meal_time');
+        return $this->belongsToMany(Meal::class);
     }
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    public function day()
+    {
+        return $this->belongsTo(Day::class);
+    }
 }

@@ -31,6 +31,12 @@ public function tags()
 {
     return $this->belongsToMany(Tag::class);
 }
+
+public function meal()
+{
+    return $this->belongsToMany(Meal::class);
 }
 
+
+}
 

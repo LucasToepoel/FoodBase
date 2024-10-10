@@ -12,17 +12,18 @@ class Meal extends Model
     protected $fillable = [
         'name',
         'description',
+        'nutrition_day_plans_id',
     ];
 
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withPivot('meal_product');
+        return $this->belongsToMany(Product::class);
     }
 
-
-    public function nutritionDayPlans()
+    public function nutritionDayPlan()
     {
-        return $this->belongsToMany(NutritionDayPlan::class)->withPivot('meal_time');
+        return $this->belongsTo(NutritionDayPlan::class);
     }
+
 }

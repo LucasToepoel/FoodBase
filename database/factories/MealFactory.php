@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use app\Models\Product;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Meal>
  */
@@ -17,11 +17,19 @@ class MealFactory extends Factory
     public function definition(): array
     {
 
-
-
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->sentence,
+            'nutrition_day_plans_id' => null,
         ];
+    }
+    public function configure()
+    {
+        return $this->afterCreating(function (\App\Models\Meal $meal) {
+                  // Fetch existing products, you can specify a count or randomize
+                  $products = Product::inRandomOrder()->take(rand(1, 3))->pluck('id');
+                  // Attach products to the meal via the junction table
+                  $meal->products()->attach($products);
+        });
     }
 }

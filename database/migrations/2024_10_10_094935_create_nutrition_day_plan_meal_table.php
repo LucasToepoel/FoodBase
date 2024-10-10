@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nutritiondayplan_meal', function (Blueprint $table) {
+        Schema::create('meal_nutrition_day_plan', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('nutritiondayplan_id');
-            $table->foreign('nutritiondayplan_id')->references('id')->on('nutritiondayplan')->onDelete('cascade');
+            $table->unsignedBigInteger('nutrition_day_plan_id');
+            $table->foreign('nutrition_day_plan_id')->references('id')->on('nutrition_day_plans')->onDelete('cascade');
             $table->unsignedBigInteger('meal_id');
             $table->foreign('meal_id')->references('id')->on('meals')->onDelete('cascade');
-            $table->timestamps();
+
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nutritiondayplan_meal');
+        Schema::dropIfExists('meal_nutrition_day_plan');
     }
 };
