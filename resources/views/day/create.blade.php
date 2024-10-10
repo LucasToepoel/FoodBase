@@ -8,6 +8,6 @@
 
     </x-slot>
 
-    <x-day-plan-view :meals="$meals"></x-day-plan-view>
+    <x-day-plan-view></x-day-plan-view>
 
 </x-app-layout>
