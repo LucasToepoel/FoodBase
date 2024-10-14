@@ -1,6 +1,7 @@
-<div class="container mt-4">
-    <div class="card">
-        <div class="card-header text-center">
+<div class="container mt-2 mt-md-4">
+    <div class="card p-0 p-md-3">
+        <div class="card-header text-center p-1 p-md-3">
+
             @php
                 $currentDate = request()->has('date') ? \Carbon\Carbon::parse(request('date')) : now();
                 $previousDay = $currentDate->copy()->subDay();
@@ -15,13 +16,13 @@
         </div>
         <div class="card-body">
             <table class="table table-bordered table-hover">
-                <thead class="thead-dark">
+                <thead class="thead-dark text-center">
                     <tr>
-                        <th scope="col">{{ $currentDate->format('l') }}</th>
-                    </tr>
-                </thead>
+                        <th scope="col" >{{ $currentDate->format('l') }}</th> <!-- Full day of the week for larger screens -->
+
+                    </tr>     </thead>
                 <tbody>
-                    <tr>
+                    <tr  class="text-center">
                         @php
                             $isToday = $currentDate->isToday();
                         @endphp
@@ -52,7 +53,7 @@
                 const year = '{{ $currentDate->format('Y') }}';
                 const date = `${year}-${month}-${day}`;
 
-                // Use Laravel to generate the base URL
+
                 const baseUrl = "{{ route('Day.show') }}";
                 // Append the date parameter to the base URL
                 const url = `${baseUrl}?date=${date}`;

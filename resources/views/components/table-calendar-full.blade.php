@@ -1,6 +1,6 @@
-<div class="container mt-4">
-    <div class="card">
-        <div class="card-header text-center">
+<div class="container mt-2 mt-md-4">
+    <div class="card p-0 p-md-3">
+        <div class="card-header text-center p-1 p-md-3">
 
         @php
             $currentMonth = request()->has('date') ? \Carbon\Carbon::parse(request('date')) : now();
@@ -14,47 +14,48 @@
         @endphp
     <h1>{{$currentMonth->year}}</h1>
         <h3>
-            <button type="button" id="previousMonthButton" class="btn btn-secondary mr-2"><</button>
+            <button type="button" id="previousMonthButton" class="btn btn-secondary mr-1 mr-md-2"><</button>
             {{ $currentMonth->format('F') }}
-            <button type="button" id="nextMonthButton" class="btn btn-secondary ml-2">></button>
+            <button type="button" id="nextMonthButton" class="btn btn-secondary ml-1 ml-md-2">></button>
         </h3>
-        <div class="card-body">
-            <table class="table table-bordered table-hover">
+        <div class="card-body p-1 p-md-2">
+            <div class="table-responsive">
+            <table class="table table-bordered mb-0">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Mon</th>
-                        <th scope="col">Tue</th>
-                        <th scope="col">Wed</th>
-                        <th scope="col">Thu</th>
-                        <th scope="col">Fri</th>
-                        <th scope="col">Sat</th>
-                        <th scope="col">Sun</th>
+                        @foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day)
+                        <th scope="col" class="d-none d-lg-table-cell">{{ $day }}</th> <!-- Full day of the week for large screens -->
+                        <th scope="col" class="d-none d-md-table-cell d-lg-none">{{ substr($day, 0, 3) }}</th> <!-- First three letters of the day of the week for medium screens -->
+                        <th scope="col" class="d-none d-sm-table-cell d-md-none">{{ substr($day, 0, 2) }}</th> <!-- First two letters of the day of the week for small screens -->
+                        <th scope="col" class="d-sm-none">{{ substr($day, 0, 1) }}</th> <!-- First letter of the day of the week for extra small screens -->
+                        @endforeach
                     </tr>
                 </thead>
                 <tbody>
                 @for ($week = 0; $week < 6; $week++)
-                    <tr>
-                        @for ($day = 1; $day <= 7; $day++)
-                            @if ($week === 0 && $day < $firstDayOfMonth)
-                                <td class="text-muted" style="background-color: rgba(128, 128, 128, 0.2);">{{ $daysInPreviousMonth - ($firstDayOfMonth - $day) + 1 }}</td>
-                            @elseif ($currentDay > $daysInMonth)
-                                @php
-                                    $nextMonthDay = $currentDay - $daysInMonth;
-                                    $currentDay++;
-                                @endphp
-                                <td class="text-muted" style="background-color: rgba(128, 128, 128, 0.2);">{{ $nextMonthDay }}</td>
-                            @else
-                                @php
-                                    $isToday = $currentDay == now()->day && $currentMonth->isSameMonth(now());
-                                @endphp
-                                <td @if($isToday) style="background-color: rgba(190, 255, 116, 0.464);"@endif>{{ $currentDay }}</td>
-                                @php $currentDay++; @endphp
-                            @endif
-                        @endfor
-                    </tr>
+                <tr>
+                    @for ($day = 1; $day <= 7; $day++)
+                    @if ($week === 0 && $day < $firstDayOfMonth)
+                        <td class="text-muted p-1 p-md-2" style="background-color: rgba(128, 128, 128, 0.2);">{{ $daysInPreviousMonth - ($firstDayOfMonth - $day) + 1 }}</td>
+                    @elseif ($currentDay > $daysInMonth)
+                        @php
+                        $nextMonthDay = $currentDay - $daysInMonth;
+                        $currentDay++;
+                        @endphp
+                        <td class="text-muted p-1 p-md-2" style="background-color: rgba(128, 128, 128, 0.2);">{{ $nextMonthDay }}</td>
+                    @else
+                        @php
+                        $isToday = $currentDay == now()->day && $currentMonth->isSameMonth(now());
+                        @endphp
+                        <td class="p-1 p-md-2" @if($isToday) style="background-color: rgba(190, 255, 116, 0.464);"@endif>{{ $currentDay }}</td>
+                        @php $currentDay++; @endphp
+                    @endif
+                    @endfor
+                </tr>
                 @endfor
                 </tbody>
             </table>
+            </div>
         </div>
 
     </div>

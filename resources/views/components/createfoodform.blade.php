@@ -35,22 +35,17 @@
                             <label for="fat">Fat:</label>
                             <input type="number" class="form-control" id="fat" name="fat" value="{{ $product->nutrition->fat ?? '' }}">
                         </div>
-
-                        <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
                     </form>
 
-                    <div class="form-group text-center">
-                        <a href="{{ url()->previous() }}" class="btn btn-danger">Back</a>
-                    </div>
                     <form action="{{ route('Product.uploadBarcode') }}" method="POST" enctype="multipart/form-data" id="barcodeForm" style="display: none;">
                         @csrf
                         <input type="file" class="form-control-file" id="barcode" name="barcode" onchange="document.getElementById('barcodeForm').submit()">
                     </form>
                 </div>
-                <div class="card-footer">
-
+                <div class="card-footer text-center">
+                    <button type="submit" class="btn btn-primary" form="barcodeForm">Submit</button>
+                    <a href="{{ url()->previous() }}" class="btn btn-danger">Back</a>
+                </div>
             </div>
 
         </div>

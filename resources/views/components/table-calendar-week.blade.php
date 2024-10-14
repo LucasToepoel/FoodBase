@@ -1,6 +1,6 @@
 <div class="container mt-4">
-    <div class="card">
-        <div class="card-header text-center">
+    <div class="card p-0 p-md-3">
+        <div class="card-header text-center p-1 p-md-3">
             @php
                 $currentDate = request()->has('date') ? \Carbon\Carbon::parse(request('date')) : now();
                 $startOfWeek = $currentDate->copy()->startOfWeek(\Carbon\Carbon::MONDAY);
@@ -10,36 +10,35 @@
             @endphp
             <h1>{{ $startOfWeek->format('Y') }}</h1>
             <h3 class="d-flex justify-content-center align-items-center">
-                <button type="button" id="previousWeekButton" class="btn btn-secondary mr-4"><</button>
+                <button type="button" id="previousWeekButton" class="btn btn-secondary mr-1 mr-md-2"><</button>
                 <span class="mx-3">{{ $startOfWeek->format('F d') }} - {{ $endOfWeek->format('F d') }}</span>
-                <button type="button" id="nextWeekButton" class="btn btn-secondary ml-4">></button>
+                <button type="button" id="nextWeekButton" class="btn btn-secondary ml-1 ml-md-2">></button>
             </h3>
         </div>
-        <div class="card-body">
-            <table class="table table-bordered table-hover">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Mon</th>
-                        <th scope="col">Tue</th>
-                        <th scope="col">Wed</th>
-                        <th scope="col">Thu</th>
-                        <th scope="col">Fri</th>
-                        <th scope="col">Sat</th>
-                        <th scope="col">Sun</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        @for ($day = 0; $day < 7; $day++)
-                            @php
-                                $currentDay = $startOfWeek->copy()->addDays($day);
-                                $isToday = $currentDay->isToday();
-                            @endphp
-                            <td @if($isToday) style="background-color: rgba(190, 255, 116, 0.464);"@endif>{{ $currentDay->day }}</td>
-                        @endfor
-                    </tr>
-                </tbody>
-            </table>
+        <div class="card-body p-1 p-md-2">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover mb-0">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            @foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as $day)
+                            <th scope="col" class="d-none d-md-table-cell" style="white-space: nowrap;">{{ $day }}</th> <!-- Full day of the week for medium screens -->
+                            <th scope="col" class="d-sm-none">{{ substr($day, 0, 1) }}</th> <!-- First three letters of the day of the week for extra small screens -->
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            @for ($day = 0; $day < 7; $day++)
+                                @php
+                                    $currentDay = $startOfWeek->copy()->addDays($day);
+                                    $isToday = $currentDay->isToday();
+                                @endphp
+                                <td class="p-1 p-md-2" @if($isToday) style="background-color: rgba(190, 255, 116, 0.464);"@endif>{{ $currentDay->day }}</td>
+                            @endfor
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
