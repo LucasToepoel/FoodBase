@@ -21,7 +21,7 @@ class NutritionDayPlanFactory extends Factory
     {
 
         return [
-        'date' => $this->faker->unique()->dateTimeThisMonth(),//->format('Y-m-d'),
+        'date' => $this->faker->unique()->dateTimeThisMonth()->format('Y-m-d'),
         'user_id' => 11,
 
         ];
