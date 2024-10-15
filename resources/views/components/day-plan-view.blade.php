@@ -1,72 +1,30 @@
-<div class="card">
-    <div class="card-body" style="padding: 2rem;">
-        <div class="row">
-            <div class="col text-center">
-            @php
-            use App\Models\NutritionDayPlan;
-
-            $dayplan = NutritionDayPlan::where('date', '2024-10-11')->first();
-            $meals = $dayplan->meals->collect() ?? null;
-            $kcalsum = $meals->sum(function($meal) {
-                return $meal->products->sum(function($product) {
-                    return $product->nutrition->kcal;
-                });
-            });
-
-            $proteinSum = $meals->sum(function($meal) {
-                return $meal->products->sum(function($product) {
-                    return $product->nutrition->protein;
-                });
-            });
-
-            $carbsSum = $meals->sum(function($meal) {
-                return $meal->products->sum(function($product) {
-                    return $product->nutrition->carbs;
-                });
-            });
-
-            $fatSum = $meals->sum(function($meal) {
-                return $meal->products->sum(function($product) {
-                    return $product->nutrition->fat;
-                });
-            });
-            @endphp
-            <h1>{{ $kcalsum }}</h1>
-            @foreach($meals as $meal)
-                <div class="card mb-3">
-                <div class="card-header">
-                    {{ $loop->iteration }}.
-                    {{ $meal->name }}
-                </div>
-                <div class="card-body">
-                    <p>{{ $meal->description }}</p>
-                    @php
-                    $products = $meal->products ?? collect();
-                    @endphp
-                    @foreach ($products as $product )
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            {{ $loop->iteration }}.
-                        {{ $product->name }}
-                        </div>
-                        <div class="card-body">
-                        <p>KCAL: {{ $product->nutrition->kcal }}</p>
-                        </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card-deck">
+                <!-- Cards for meals will go here -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Meal 1</h5>
                     </div>
-                    @endforeach
                 </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Meal 2</h5>
+                    </div>
                 </div>
-            @endforeach
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Meal 3</h5>
+                    </div>
+                </div>
             </div>
-            <div class="col text-center">
-                <!-- Second div content -->
-                <canvas id="myPieChart"></canvas>
-
-            </div>
+        </div>
+        <div class="col-md-4">
+            <img src="path/to/placeholder-image.jpg" class="img-fluid" alt="Placeholder Image">
         </div>
     </div>
 </div>
-
 
 
 <script>
@@ -76,7 +34,7 @@
         data: {
             labels: ['Protein', 'Carbs', 'Fat'],
             datasets: [{
-                data: [{{ $proteinSum }}, {{ $carbsSum }}, {{ $fatSum }}],
+                data: [{{ 0 }}, {{ 0 }}, {{ 0 }}],
                 backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
             }]
         },
@@ -93,7 +51,7 @@
                             }
                         },
                         {
-                            text: '{{ $kcalsum }} kcal',
+                            text: ' kcal',
                             font: {
                                 size: '16'
                             },

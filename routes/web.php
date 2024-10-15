@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DayController;
+
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\NutritionDayPlanController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -18,8 +19,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('Day', [DayController::class, 'index'])->name('Day.index');
-Route::get('Day/show', [DayController::class, 'show'])->name('Day.show');
+Route::get('NutritionDayPlan', [NutritionDayPlanController::class, 'index'])->name('Day.index');
+Route::get('NutritionDayPlan/show', [NutritionDayPlanController::class, 'show'])->name('Day.show');
 Route::resource('Product', ProductController::class);
 
 Route::post('/decode-barcode', [ProductController::class, 'decode'])->name('decode.barcode');
