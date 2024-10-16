@@ -15,7 +15,6 @@ class Meal extends Model
         'nutrition_day_plans_id',
     ];
 
-
     public function products()
     {
         return $this->belongsToMany(Product::class);
@@ -25,5 +24,4 @@ class Meal extends Model
     {
         return $this->belongsTo(NutritionDayPlan::class);
     }
-
 }

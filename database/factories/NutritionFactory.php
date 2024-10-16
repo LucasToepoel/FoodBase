@@ -2,9 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Portion;
-use App\Models\Product;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

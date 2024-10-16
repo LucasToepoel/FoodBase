@@ -17,26 +17,25 @@ class Product extends Model
         'product_tag_id',
     ];
 
-public function nutrition()
-{
-    return $this->belongsTo(Nutrition::class);
+    public function nutrition()
+    {
+        return $this->belongsTo(Nutrition::class);
 
+    }
+
+    public function portions()
+    {
+        return $this->belongsToMany(Portion::class);
+
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function meal()
+    {
+        return $this->belongsToMany(Meal::class);
+    }
 }
-public function portions()
-{
-    return $this->belongsToMany(Portion::class);
-
-}
-public function tags()
-{
-    return $this->belongsToMany(Tag::class);
-}
-
-public function meal()
-{
-    return $this->belongsToMany(Meal::class);
-}
-
-
-}
-

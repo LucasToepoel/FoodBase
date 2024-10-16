@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomPortion extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'unit',
         'value',

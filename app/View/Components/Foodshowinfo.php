@@ -17,6 +17,7 @@ class Foodshowinfo extends Component
     {
         $this->product = $product;
     }
+
     /**
      * Get the view / contents that represent the component.
      */

@@ -10,6 +10,7 @@ class NutritionDayPlan extends Model
     use HasFactory;
 
     protected $appends = ['total_protein', 'total_carbs', 'total_fat', 'total_kcal'];
+
     protected $fillable = [
         'date',
         'user_id',
@@ -23,6 +24,7 @@ class NutritionDayPlan extends Model
                 $totalProtein += $product->nutrition->protein;
             }
         }
+
         return $totalProtein;
     }
 
@@ -34,6 +36,7 @@ class NutritionDayPlan extends Model
                 $totalCarbs += $product->nutrition->carbs;
             }
         }
+
         return $totalCarbs;
     }
 
@@ -45,6 +48,7 @@ class NutritionDayPlan extends Model
                 $totalFat += $product->nutrition->fat;
             }
         }
+
         return $totalFat;
     }
 
@@ -56,12 +60,15 @@ class NutritionDayPlan extends Model
                 $totalKcal += $product->nutrition->kcal;
             }
         }
+
         return $totalKcal;
     }
+
     public function meals()
     {
         return $this->belongsToMany(Meal::class);
     }
+
     public function user()
     {
         return $this->belongsTo(User::class);

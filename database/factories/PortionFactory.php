@@ -18,14 +18,13 @@ class PortionFactory extends Factory
     public function definition(): array
     {
 
-
-            return [
-                'unit' => $this->faker->lexify('??'),
-                'value' => $this->faker->randomFloat(2, 0.1, 100),
-                'portion_type' => 'standard',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
+        return [
+            'unit' => $this->faker->lexify('??'),
+            'value' => $this->faker->randomFloat(2, 0.1, 100),
+            'portion_type' => 'standard',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
     }
 
     public function custom(): self
@@ -41,4 +40,4 @@ class PortionFactory extends Factory
             ]);
         });
     }
-    }
+}

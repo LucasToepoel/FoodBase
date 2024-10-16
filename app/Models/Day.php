@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Day extends Model
 {
@@ -13,6 +13,7 @@ class Day extends Model
         'date',
         'user_id',
     ];
+
     public function nutritionDayPlans()
     {
         return $this->hasOne(NutritionDayPlan::class);

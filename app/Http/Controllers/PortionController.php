@@ -9,7 +9,7 @@ class PortionController extends Controller
 {
     public function store(Request $request)
     {
-        $portion = new Portion();
+        $portion = new Portion;
         $portion->unit = $request->input('unit');
         $portion->value = $request->input('value');
         $portion->created_at = now();

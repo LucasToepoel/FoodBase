@@ -1,10 +1,9 @@
 <?php
 
+use App\Http\Controllers\NutritionDayPlanController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\NutritionDayPlanController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -26,6 +25,5 @@ Route::resource('Product', ProductController::class);
 
 Route::post('/decode-barcode', [ProductController::class, 'decode'])->name('decode.barcode');
 Route::post('/uploadbarcode', [ProductController::class, 'upload'])->name('Product.uploadBarcode');
-
 
 require __DIR__.'/auth.php';
