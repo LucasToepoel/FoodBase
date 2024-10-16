@@ -15,15 +15,15 @@
         <div class="flex justify-center">
             <form action="" method="GET" class="mx-2">
                 <input type="hidden" name="view" value="0">
-                <button type="submit" class="px-4 py-2 bg-blue-500 border rounded">Month View</button>
+                <button type="submit" class="px-4 py-2 border rounded">Month View</button>
             </form>
             <form action="" method="GET" class="mx-2">
                 <input type="hidden" name="view" value="1">
-                <button type="submit" class="px-4 py-2 bg-blue-500 border rounded">Week View</button>
+                <button type="submit" class="px-4 py-2 border rounded">Week View</button>
             </form>
             <form action="" method="GET" class="mx-2">
                 <input type="hidden" name="view" value="2">
-                <button type="submit" class="px-4 py-2 bg-blue-500 border rounded">Day View</button>
+                <button type="submit" class="px-4 py-2 border rounded">Day View</button>
             </form>
         </div>
 

@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('NutritionDayPlan', [NutritionDayPlanController::class, 'index'])->name('Day.index');
 Route::get('NutritionDayPlan/show', [NutritionDayPlanController::class, 'show'])->name('Day.show');
+Route::get('NutritionDayPlan/create', [NutritionDayPlanController::class, 'create'])->name('Day.create');
 Route::resource('Product', ProductController::class);
 
 Route::post('/decode-barcode', [ProductController::class, 'decode'])->name('decode.barcode');
