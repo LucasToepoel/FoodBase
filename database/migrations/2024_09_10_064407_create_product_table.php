@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('ean');
-            $table->foreignId('nutrition_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -19,6 +19,10 @@ return new class extends Migration
             $table->float('carbs');
             $table->timestamps();
         });
+
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreignId('nutrition_id')->nullable()->after('ean')->constrained()->onDelete('cascade');
+        });
     }
 
     /**
@@ -27,5 +31,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('nutrition');
+
+        Schema::table('products', function (Blueprint $table) {
+            $table->integer('holding_id')->unsigned()->change();
+            $table->dropForeign(['nutrition_id']);
+        });
     }
 };
