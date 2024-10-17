@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Nutrition extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'kcal',
         'fat',
@@ -15,8 +16,8 @@ class Nutrition extends Model
         'protein',
     ];
 
-public function product()
-{
-    return $this->hasOne(Product::class);
-}
+    public function product()
+    {
+        return $this->hasOne(Product::class);
+    }
 }

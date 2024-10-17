@@ -17,6 +17,7 @@ class DayPlanView extends Component
         $this->data = $data;
 
     }
+
     public function render(): View|Closure|string
     {
         return view('components.day-plan-view', ['data' => $this->data]);

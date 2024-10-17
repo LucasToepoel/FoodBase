@@ -4,19 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Day;
 use App\Models\Nutrition;
-use Illuminate\Http\Request;
 use App\Models\NutritionDayPlan;
+use Illuminate\Http\Request;
 
 class NutritionDayPlanController extends Controller
 {
-
     public function show(Request $request)
     {
         $date = $request->input('date');
 
         // Ensure the user is authenticated and has an ID
         $userId = auth()->id();
-        if (!$userId) {
+        if (! $userId) {
             // Handle the case where the user is not authenticated
             return redirect()->route('login')->withErrors('You must be logged in to view this page.');
         }
@@ -27,7 +26,7 @@ class NutritionDayPlanController extends Controller
             ->where('user_id', $userId)
             ->firstOrCreate([
                 'date' => $date,
-                'user_id' => $userId
+                'user_id' => $userId,
             ]);
 
         return view('day.show', compact('data'));
@@ -43,5 +42,4 @@ class NutritionDayPlanController extends Controller
     {
         return view('day.create');
     }
-
 }

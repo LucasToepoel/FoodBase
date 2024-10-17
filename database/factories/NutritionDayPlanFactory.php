@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\NutritionDayPlan;
 use App\Models\Meal;
-use Illuminate\Validation\Rules\Unique;
+use App\Models\NutritionDayPlan;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Meal>
@@ -21,16 +20,17 @@ class NutritionDayPlanFactory extends Factory
     {
 
         return [
-        'date' => $this->faker->unique()->dateTimeThisMonth()->format('Y-m-d'),
-        'user_id' => 11,
+            'date' => $this->faker->unique()->dateTimeThisMonth()->format('Y-m-d'),
+            'user_id' => 11,
 
         ];
     }
+
     public function configure()
     {
 
         return $this->afterCreating(function (NutritionDayPlan $nutritionDayPlans) {
-        $meals = Meal::factory()->count(3)->create();
+            $meals = Meal::factory()->count(3)->create();
             $nutritionDayPlans->meals()->attach($meals);
         });
 

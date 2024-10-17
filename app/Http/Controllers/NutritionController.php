@@ -12,7 +12,7 @@ class NutritionController extends Controller
      */
     public function store(Request $request)
     {
-        $nutrition = new Nutrition();
+        $nutrition = new Nutrition;
         $nutrition->kcal = $request->input('calories');
         $nutrition->protein = $request->input('protein');
         $nutrition->carbs = $request->input('carbs');

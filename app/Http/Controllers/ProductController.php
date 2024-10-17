@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
 class ProductController extends Controller
 {
     /**
@@ -43,7 +44,7 @@ class ProductController extends Controller
         $nutrition = app('App\Http\Controllers\NutritionController')->store($request);
 
         // Create a new Product entry
-        $product = new Product();
+        $product = new Product;
         $product->name = $request->input('name');
         $product->nutrition_id = $nutrition->id;
         $product->ean = $request->input('ean');
@@ -58,6 +59,7 @@ class ProductController extends Controller
     public function show(Product $Product)
     {
         $product = Product::find($Product->id);
+
         return view('food.show', compact('product'));
     }
 
@@ -67,6 +69,7 @@ class ProductController extends Controller
     public function edit(Product $Product)
     {
         $product = Product::find($Product->id);
+
         return view('food.edit', compact('Product'));
     }
 
@@ -101,6 +104,7 @@ class ProductController extends Controller
     public function destroy(Product $Product)
     {
         $Product->delete();
+
         return redirect()->route('Product.index')->with('success', 'Food entry deleted successfully.');
     }
 
@@ -112,10 +116,11 @@ class ProductController extends Controller
 
         $path = $request->file('barcode')->store();
 
-        $result = shell_exec(base_path('\ZBar\bin\zbarimg.exe') . ' -q --raw ' . storage_path('app\\private\\' . $path));
+        $result = shell_exec(base_path('\ZBar\bin\zbarimg.exe').' -q --raw '.storage_path('app\\private\\'.$path));
 
         $data = explode("\n", $result)[0];
         Storage::delete($path);
+
         return redirect()->back()->with('ean', $data);
     }
 }
