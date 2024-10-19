@@ -6,7 +6,7 @@
 
     </x-slot>
 
-<x-foodshowinfo :product="$product" />
+<x-databaseview.foodshowinfo :product="$product" />
 
 <x-slot name="footer">
     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight text-center">

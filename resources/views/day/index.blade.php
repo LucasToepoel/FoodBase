@@ -29,13 +29,13 @@
 
         @switch($value)
             @case(0)
-                <x-table-calendar-full></x-table-calendar-full>
+                <x-plannerview.table-calendar-full></x-table-calendar-full>
                 @break
             @case(1)
-                <x-table-calendar-week></x-table-calendar-week>
+                <x-plannerview.table-calendar-week></x-table-calendar-week>
                 @break
             @case(2)
-                <x-table-calendar-day></x-table-calendar-day>
+                <x-plannerview.table-calendar-day></x-table-calendar-day>
                 @break
         @endswitch
     </x-slot>

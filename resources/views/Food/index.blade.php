@@ -6,7 +6,7 @@
 
     </x-slot>
 
-<x-food-index-table :products="$products" />
+<x-databaseview.food-index-table :products="$products" />
 
 
 </x-app-layout>

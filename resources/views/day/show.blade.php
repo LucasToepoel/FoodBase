@@ -8,6 +8,6 @@
 
     </x-slot>
 
-    <x-day-plan-view :data="$data"></x-day-plan-view>
+    <x-plannerview.day-plan-view :data="$data"></x-day-plan-view>
 
 </x-app-layout>

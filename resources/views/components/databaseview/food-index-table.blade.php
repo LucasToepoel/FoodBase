@@ -23,7 +23,7 @@
                     </thead>
                     <tbody>
                         @foreach($products as $food)
-                            <tr data-toggle="collapse" data-target="#details-{{ $food->id }}" class="accordion-toggle">
+                            <tr data-bs-toggle="collapse" data-bs-target="#details-{{ $food->id }}" class="accordion-toggle">
                                 <th scope="row">{{ ($products->currentPage() - 1) * $products->perPage() + $loop->iteration }}</th>
                                 <td>{{ $food->name }}</td>
                                 <td class="d-none d-md-table-cell">{{ $food->nutrition->kcal }}</td>
@@ -40,7 +40,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="9" class="hiddenRow">
+                                <td colspan="9" class="hiddenRow p-0">
                                     <div class="collapse" id="details-{{ $food->id }}">
                                         <ul class="list-group">
                                             <li class="list-group-item d-md-none">Calories: {{ $food->nutrition->kcal }}</li>
