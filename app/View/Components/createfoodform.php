@@ -23,6 +23,6 @@ class createfoodform extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.createfoodform');
+        return view('components.databaseview.createfoodform');
     }
 }
