@@ -1,0 +1,61 @@
+services:
+  # PHP Service (Laravel App)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel-app
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - .:/var/www
+      - ./database:/var/www/database  # Mount the database folder for SQLite access
+    environment:
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /var/www/database/database.sqlite  # Path inside container
+    networks:
+      - app-network
+    depends_on:
+      - db
+
+  # MySQL Database (optional if using SQLite, but may be needed for other apps)
+  db:
+    image: mysql:8.0
+    container_name: laravel-db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_PASSWORD: secret
+      MYSQL_USER: laravel
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - app-network
+
+  # Nginx Web Server
+  webserver:
+    image: nginx:alpine
+    container_name: laravel-webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d  # Nginx configuration
+    networks:
+      - app-network
+
+# Volumes
+volumes:
+  dbdata:
+    driver: local
+
+# Networks
+networks:
+  app-network:
+    driver: bridge
