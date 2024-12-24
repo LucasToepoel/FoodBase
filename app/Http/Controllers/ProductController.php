@@ -40,6 +40,8 @@ class ProductController extends Controller
             'ean' => 'required|string|max:255',
         ]);
 
+
+
         // Create a new Nutrition entry
         $nutrition = app('App\Http\Controllers\NutritionController')->store($request);
 
@@ -49,7 +51,6 @@ class ProductController extends Controller
         $product->nutrition_id = $nutrition->id;
         $product->ean = $request->input('ean');
         $product->save();
-
         return redirect()->route('Product.index')->with('success', 'Food entry created successfully.');
     }
 
